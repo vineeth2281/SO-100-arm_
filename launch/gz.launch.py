@@ -1,15 +1,18 @@
 from launch import LaunchDescription
-from launch.actions import ExecuteProcess, DeclareLaunchArgument, OpaqueFunction
+from launch.actions import ExecuteProcess, DeclareLaunchArgument, OpaqueFunction, RegisterEventHandler
+from launch.event_handlers import OnProcessExit
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
+from controller_manager_msgs.srv import SwitchController
 import os
 
 def get_robot_description(context, *args, **kwargs):
     dof = LaunchConfiguration('dof').perform(context)
     pkg_share = FindPackageShare('so_100_arm').find('so_100_arm')
     urdf_path = os.path.join(pkg_share, 'urdf', f'so_100_arm_{dof}dof.urdf')
+    controller_path = os.path.join(pkg_share, 'config', f'controllers_{dof}dof.yaml')
     
     with open(urdf_path, 'r') as file:
         urdf_content = file.read()
@@ -19,7 +22,8 @@ def get_robot_description(context, *args, **kwargs):
         gazebo_urdf_content = urdf_content.replace(replace_str, with_str)
         return {
             'robot_description': ParameterValue(urdf_content, value_type=str),
-            'gazebo_description': ParameterValue(gazebo_urdf_content, value_type=str)
+            'gazebo_description': ParameterValue(gazebo_urdf_content, value_type=str),
+            'controller_path': controller_path
         }
 
 def generate_launch_description():
@@ -42,6 +46,34 @@ def generate_launch_description():
     def launch_setup(context, *args, **kwargs):
         descriptions = get_robot_description(context)
         
+        spawn_robot = Node(
+            package='ros_gz_sim',
+            executable='create',
+            name='spawn_model',
+            arguments=[
+                '-string', descriptions['gazebo_description'].value,
+                '-name', 'so_100_arm',
+                '-allow_renaming', 'true',
+                '-x', '0',
+                '-y', '0',
+                '-z', '0'
+            ],
+            output='screen'
+        )
+
+        # Define the controller spawner nodes
+        joint_state_broadcaster_spawner = ExecuteProcess(
+            cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+                'joint_state_broadcaster'],
+            output='screen'
+        )
+
+        joint_trajectory_controller_spawner = ExecuteProcess(
+            cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+                'joint_trajectory_controller'],
+            output='screen'
+        )
+
         nodes = [
             # Start robot_state_publisher
             Node(
@@ -74,20 +106,23 @@ def generate_launch_description():
                 ],
             ),
 
-            # Spawn robot model using Gazebo-modified URDF
-            Node(
-                package='ros_gz_sim',
-                executable='create',
-                name='spawn_model',
-                arguments=[
-                    '-string', descriptions['gazebo_description'].value,
-                    '-name', 'so_100_arm',
-                    '-allow_renaming', 'true',
-                    '-x', '0',
-                    '-y', '0',
-                    '-z', '0'
-                ],
-                output='screen'
+            # Spawn robot
+            spawn_robot,
+
+            # Spawn joint_state_broadcaster after robot spawns
+            RegisterEventHandler(
+                event_handler=OnProcessExit(
+                    target_action=spawn_robot,
+                    on_exit=[joint_state_broadcaster_spawner]
+                )
+            ),
+
+            # Spawn joint_trajectory_controller after joint_state_broadcaster
+            RegisterEventHandler(
+                event_handler=OnProcessExit(
+                    target_action=joint_state_broadcaster_spawner,
+                    on_exit=[joint_trajectory_controller_spawner]
+                )
             )
         ]
         return nodes

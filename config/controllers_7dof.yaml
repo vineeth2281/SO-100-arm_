@@ -1,0 +1,16 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+      joints:
+        - Shoulder_Pitch
+        - Shoulder_Yaw
+        - Humeral_Roll
+        - Elbow_Pitch
+        - Wrist_Roll
+        - Wrist_Pitch
+        - Wrist_Yaw 
