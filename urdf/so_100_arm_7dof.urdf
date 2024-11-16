@@ -44,8 +44,8 @@
       </hardware>
       <joint name="Shoulder_Pitch">
           <command_interface name="position">
-            <param name="min">-3.14</param>
-            <param name="max">3.14</param>
+            <param name="min">-1.0</param>
+            <param name="max">3.0</param>
           </command_interface>
           <state_interface name="position"/>
           <state_interface name="velocity"/>
@@ -53,8 +53,8 @@
       </joint>
       <joint name="Shoulder_Yaw">
           <command_interface name="position">
-            <param name="min">-3.14</param>
-            <param name="max">3.14</param>
+            <param name="min">-1.0</param>
+            <param name="max">0.0</param>
           </command_interface>
           <state_interface name="position"/>
           <state_interface name="velocity"/>
@@ -62,8 +62,8 @@
       </joint>
       <joint name="Humeral_Rotation">
           <command_interface name="position">
-            <param name="min">-3.14</param>
-            <param name="max">3.14</param>
+            <param name="min">-1.8</param>
+            <param name="max">1.8</param>
           </command_interface>
           <state_interface name="position"/>
           <state_interface name="velocity"/>
@@ -71,8 +71,8 @@
       </joint>
       <joint name="Elbow">
           <command_interface name="position">
-            <param name="min">-3.14</param>
-            <param name="max">3.14</param>
+            <param name="min">-3.0</param>
+            <param name="max">0.0</param>
           </command_interface>
           <state_interface name="position"/>
           <state_interface name="velocity"/>
@@ -80,17 +80,8 @@
       </joint>
       <joint name="Wrist_Roll">
           <command_interface name="position">
-            <param name="min">-3.14</param>
-            <param name="max">3.14</param>
-          </command_interface>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <state_interface name="effort"/>
-      </joint>
-      <joint name="Wrist_Pitch">
-          <command_interface name="position">
-            <param name="min">-3.14</param>
-            <param name="max">3.14</param>
+            <param name="min">-1.8</param>
+            <param name="max">1.8</param>
           </command_interface>
           <state_interface name="position"/>
           <state_interface name="velocity"/>
@@ -98,8 +89,17 @@
       </joint>
       <joint name="Wrist_Yaw">
           <command_interface name="position">
-            <param name="min">-3.14</param>
-            <param name="max">3.14</param>
+            <param name="min">-0.9</param>
+            <param name="max">0.5</param>
+          </command_interface>
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+      </joint>
+      <joint name="Wrist_Pitch">
+          <command_interface name="position">
+            <param name="min">-1.8</param>
+            <param name="max">1.8</param>
           </command_interface>
           <state_interface name="position"/>
           <state_interface name="velocity"/>
