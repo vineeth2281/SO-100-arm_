@@ -15,6 +15,12 @@
   <depend>rviz2</depend>
   <depend>joint_state_publisher</depend>
   <depend>gz_ros</depend>
+  <depend>ros2_control</depend>
+  <depend>ros2_controllers</depend>
+  <depend>gz_ros2_control</depend>
+  <depend>controller_manager</depend>
+  <depend>joint_trajectory_controller</depend>
+  <depend>forward_command_controller</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

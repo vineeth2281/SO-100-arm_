@@ -11,12 +11,13 @@ joint_trajectory_controller:
   ros__parameters:
     type: joint_trajectory_controller/JointTrajectoryController
     joints:
+      - Shoulder_Rotation
       - Shoulder_Pitch
-      - Shoulder_Yaw
-      - Humeral_Roll
-      - Elbow_Pitch
-      - Wrist_Roll 
-      
+      - Elbow
+      - Wrist_Pitch
+      - Wrist_Roll
+    
+    interface_name: position
     command_interfaces:
       - position
     state_interfaces:
