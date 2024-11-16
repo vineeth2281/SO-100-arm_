@@ -29,22 +29,30 @@ The original ROS1 implementation can be found at: https://github.com/TheRobotStu
 
 ### Create a ROS2 workspace (if you don't have one)
 
+```bash
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
+```
 
 ### Clone the repository
 
-git clone <repository_url>
+```bash
+git clone git@github.com:brukg/SO-100-arm.git
+```
 
 ### Install dependencies
 
+```bash
 cd ~/ros2_ws
 rosdep install --from-paths src --ignore-src -r -y
+```
 
 ### Build the package
 
+```bash
 colcon build --packages-select so_100_arm
 source install/setup.bash
+```
 
 ## Usage
 
@@ -80,51 +88,65 @@ ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/msg
 ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory '{joint_names: ["Shoulder_Rotation", "Shoulder_Pitch", "Elbow", "Wrist_Roll", "Wrist_Pitch"], points: [{positions: [1.0, 1.0, 1.0, 1.0, 1.0], velocities: [], accelerations: [], effort: [], time_from_start: {sec: 1, nanosec: 0}}]}'
 ```
 
+## Demonstrations
+
+### Gazebo Simulation
+
+[![SO-100 Robot Arm Simulation](https://img.youtube.com/vi/ATuS6rOhYvI/0.jpg)](https://youtu.be/ATuS6rOhYvI?si=T6bOiCdqgBmSoSCu)
+
+The video above shows the SO-100 robot arm in Gazebo Harmonic simulation:
+- Joint trajectory execution
+- Position control
+- Dynamic simulation with gravity
+
 ## Package Structure
 
-so_100_arm/  
-├── CMakeLists.txt                      # Build system configuration  
+```bash
+so_100_arm/
+├── CMakeLists.txt                      # Build system configuration
 ├── config/  
-│   ├── controllers_5dof.yaml           # 5DOF joint controller configuration  
-│   ├── controllers_7dof.yaml           # 7DOF joint controller configuration  
-│   ├── initial_positions.yaml          # Default joint positions  
-│   ├── joint_limits.yaml               # Joint velocity and position limits  
-│   ├── kinematics.yaml                 # MoveIt kinematics configuration  
-│   ├── moveit_controllers.yaml         # MoveIt controller settings  
-│   ├── moveit.rviz                     # RViz configuration for MoveIt  
-│   ├── pilz_cartesian_limits.yaml      # Cartesian planning limits  
-│   ├── ros2_controllers.yaml           # ROS2 controller settings  
-│   ├── sensors_3d.yaml                 # Sensor configuration  
-│   ├── so_100_arm.ros2_control.xacro   # ROS2 Control macro  
-│   ├── so_100_arm.srdf                 # Semantic robot description  
-│   ├── so_100_arm.urdf.xacro          # Main robot description macro  
-│   └── urdf.rviz                       # RViz configuration for URDF  
+│   ├── controllers_5dof.yaml           # 5DOF joint controller configuration
+│   ├── controllers_7dof.yaml           # 7DOF joint controller configuration
+│   ├── initial_positions.yaml          # Default joint positions
+│   ├── joint_limits.yaml               # Joint velocity and position limits
+│   ├── kinematics.yaml                 # MoveIt kinematics configuration
+│   ├── moveit_controllers.yaml         # MoveIt controller settings
+│   ├── moveit.rviz                     # RViz configuration for MoveIt
+│   ├── pilz_cartesian_limits.yaml      # Cartesian planning limits
+│   ├── ros2_controllers.yaml           # ROS2 controller settings
+│   ├── sensors_3d.yaml                 # Sensor configuration
+│   ├── so_100_arm.ros2_control.xacro   # ROS2 Control macro
+│   ├── so_100_arm.srdf                 # Semantic robot description
+│   ├── so_100_arm.urdf.xacro          # Main robot description macro
+│   └── urdf.rviz                       # RViz configuration for URDF
 ├── launch/  
-│   ├── demo.launch.py                  # MoveIt demo with RViz  
-│   ├── gz.launch.py                    # Gazebo simulation launch  
-│   ├── move_group.launch.py            # MoveIt move_group launch  
-│   ├── moveit_rviz.launch.py           # RViz with MoveIt plugin  
-│   ├── rsp.launch.py                   # Robot state publisher  
-│   ├── rviz.launch.py                  # Basic RViz visualization  
-│   ├── setup_assistant.launch.py       # MoveIt Setup Assistant  
-│   ├── spawn_controllers.launch.py      # Controller spawning  
-│   ├── static_virtual_joint_tfs.launch.py  
-│   └── warehouse_db.launch.py          # MoveIt warehouse database  
-├── LICENSE  
-├── models/  
-│   ├── so_100_arm_5dof/               # 5DOF robot assets  
-│   │   ├── meshes/                    # STL files for visualization  
-│   │   └── model.config               # Model metadata  
-│   └── so_100_arm_7dof/               # 7DOF robot assets  
-│       ├── meshes/                    # STL files for visualization  
-│       └── model.config               # Model metadata  
-├── package.xml                         # Package metadata and dependencies  
-├── README.md                           # This documentation  
-└── urdf/  
-    ├── so_100_arm_5dof.csv            # Joint configuration data  
-    ├── so_100_arm_5dof.urdf           # 5DOF robot description  
-    ├── so_100_arm_7dof.csv            # Joint configuration data  
-    └── so_100_arm_7dof.urdf           # 7DOF robot description  
+│   ├── demo.launch.py                  # MoveIt demo with RViz
+│   ├── gz.launch.py                    # Gazebo simulation launch
+│   ├── move_group.launch.py            # MoveIt move_group launch
+│   ├── moveit_rviz.launch.py           # RViz with MoveIt plugin
+│   ├── rsp.launch.py                   # Robot state publisher
+│   ├── rviz.launch.py                  # Basic RViz visualization
+│   ├── setup_assistant.launch.py       # MoveIt Setup Assistant
+│   ├── spawn_controllers.launch.py      # Controller spawning
+│   ├── static_virtual_joint_tfs.launch.py
+│   └── warehouse_db.launch.py          # MoveIt warehouse database
+├── LICENSE
+├── models/
+│   ├── so_100_arm_5dof/               # 5DOF robot assets
+│   │   ├── meshes/                    # STL files for visualization
+│   │   └── model.config               # Model metadata
+│   └── so_100_arm_7dof/               # 7DOF robot assets
+│       ├── meshes/                    # STL files for visualization
+│       └── model.config               # Model metadata
+├── package.xml                         # Package metadata and dependencies
+├── README.md                           # This documentation
+└── urdf/
+    ├── so_100_arm_5dof.csv            # Joint configuration data
+    ├── so_100_arm_5dof.urdf           # 5DOF robot description
+    ├── so_100_arm_7dof.csv            # Joint configuration data
+    └── so_100_arm_7dof.urdf           # 7DOF robot description
+
+```
 
 ## Joint Configuration
 
@@ -170,6 +192,5 @@ Bruk G.
 
 ## Acknowledgments
 
-- Based on ROS2 Humble
-- Uses MoveIt2 for motion planning
-- Gazebo Harmonic for simulation
+- Based on the SO-ARM100 project by The Robot Studio
+
