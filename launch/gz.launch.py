@@ -74,6 +74,13 @@ def generate_launch_description():
             output='screen'
         )
 
+        # Add gripper controller spawner
+        gripper_controller_spawner = ExecuteProcess(
+            cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+                'gripper_controller'],
+            output='screen'
+        )
+
         nodes = [
             # Start robot_state_publisher
             Node(
@@ -122,6 +129,14 @@ def generate_launch_description():
                 event_handler=OnProcessExit(
                     target_action=joint_state_broadcaster_spawner,
                     on_exit=[joint_trajectory_controller_spawner]
+                )
+            ),
+
+            # Add gripper controller after joint_trajectory_controller
+            RegisterEventHandler(
+                event_handler=OnProcessExit(
+                    target_action=joint_trajectory_controller_spawner,
+                    on_exit=[gripper_controller_spawner]
                 )
             )
         ]

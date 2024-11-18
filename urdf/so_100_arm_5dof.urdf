@@ -39,7 +39,8 @@
 
   <ros2_control name="gz_ros2_control/GazeboSimSystem" type="system">
       <hardware>
-          <plugin>gz_ros2_control/GazeboSystem</plugin>
+          <plugin>fake_components/GenericSystem</plugin>
+          <!-- <plugin>gz_ros2_control/GazeboSystem</plugin> -->
       </hardware>
       <joint name="Shoulder_Rotation">
           <command_interface name="position">
@@ -81,6 +82,15 @@
           <command_interface name="position">
               <param name="min">-3.14</param>
               <param name="max">3.14</param>
+          </command_interface>
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+      </joint>
+      <joint name="Gripper">
+          <command_interface name="position">
+              <param name="min">0.0</param>
+              <param name="max">1.57</param>
           </command_interface>
           <state_interface name="position"/>
           <state_interface name="velocity"/>

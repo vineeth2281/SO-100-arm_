@@ -7,11 +7,12 @@ The original ROS1 implementation can be found at: https://github.com/TheRobotStu
 ## Features
 
 - Robot arm URDF models
-  - 5-DOF configuration
+  - 5-DOF configuration with gripper
   - 7-DOF configuration
 - Gazebo Harmonic simulation support
 - ROS2 Control integration
-- Joint trajectory controller configuration
+  - Joint trajectory controller
+  - Gripper action controller
 - MoveIt2 motion planning capabilities (In Progress)
   - Basic configuration generated
   - Integration with Gazebo pending
@@ -87,6 +88,28 @@ ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/msg
 ```bash
 ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory '{joint_names: ["Shoulder_Rotation", "Shoulder_Pitch", "Elbow", "Wrist_Roll", "Wrist_Pitch"], points: [{positions: [1.0, 1.0, 1.0, 1.0, 1.0], velocities: [], accelerations: [], effort: [], time_from_start: {sec: 1, nanosec: 0}}]}'
 ```
+
+### Test Gripper Control
+
+The gripper can be controlled using ROS2 actions:
+
+```bash
+# Open gripper (full open position)
+ros2 action send_goal /gripper_controller/gripper_cmd control_msgs/action/GripperCommand "{command: {position: 1.57, max_effort: 50.0}}"
+
+# Close gripper
+ros2 action send_goal /gripper_controller/gripper_cmd control_msgs/action/GripperCommand "{command: {position: 0.0, max_effort: 50.0}}"
+
+# Half-open position
+ros2 action send_goal /gripper_controller/gripper_cmd control_msgs/action/GripperCommand "{command: {position: 0.5, max_effort: 50.0}}"
+```
+
+Monitor gripper state:
+```bash
+ros2 topic echo /gripper_controller/state
+```
+
+Note: The gripper position ranges from 0.0 (closed) to 0.085 (fully open). The max_effort parameter controls the gripping force.
 
 ## Demonstrations
 
