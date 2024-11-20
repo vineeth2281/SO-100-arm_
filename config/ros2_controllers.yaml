@@ -7,22 +7,19 @@ controller_manager:
       type: joint_trajectory_controller/JointTrajectoryController
 
 
-    gripper_position_controller:
-      type: position_controllers/GripperActionController
-
-
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
 joint_trajectory_controller:
   ros__parameters:
     joints:
-      []
+      - Shoulder_Rotation
+      - Shoulder_Pitch
+      - Elbow
+      - Wrist_Pitch
+      - Wrist_Roll
     command_interfaces:
-      []
+      - position
     state_interfaces:
-      []
-gripper_position_controller:
-  ros__parameters:
-    joints:
-      []
+      - position
+      - velocity

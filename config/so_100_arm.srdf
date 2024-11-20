@@ -12,8 +12,23 @@
     <group name="so">
         <chain base_link="Base" tip_link="Fixed_Gripper"/>
     </group>
-    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="end" parent_link="Fixed_Gripper" group="so"/>
+
+    <!-- Add gripper group -->
+    <group name="gripper">
+        <joint name="Gripper"/>
+    </group>
+
+    <!-- Define end effector -->
+    <end_effector name="gripper" parent_link="Fixed_Gripper" group="gripper"/>
+
+    <!-- Define the gripper as attached to the arm -->
+    <group_state name="open" group="gripper">
+        <joint name="Gripper" value="3.14"/>
+    </group_state>
+    <group_state name="closed" group="gripper">
+        <joint name="Gripper" value="-3.14"/>
+    </group_state>
+
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="Base" link2="Shoulder_Rotation_Pitch" reason="Adjacent"/>
     <disable_collisions link1="Fixed_Gripper" link2="Moving_Jaw" reason="Adjacent"/>

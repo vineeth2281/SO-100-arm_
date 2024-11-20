@@ -4,11 +4,9 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Global Options1
         - /MotionPlanning1
-        - /MotionPlanning1/Status1
+        - /MotionPlanning1/Scene Geometry1
         - /RobotModel1
-        - /RobotModel1/Status1
       Splitter Ratio: 0.5
     Tree Height: 174
   - Class: rviz_common/Help
@@ -66,10 +64,53 @@ Visualization Manager:
         Interrupt Display: false
         Links:
           All Links Enabled: true
+          Base:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           Expand Joint Details: false
           Expand Link Details: false
           Expand Tree: false
-          Link Tree Style: ""
+          Fixed_Gripper:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Link Tree Style: Links in Alphabetic Order
+          Lower_Arm:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Moving_Jaw:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Shoulder_Rotation_Pitch:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Upper_Arm:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Wrist_Pitch_Roll:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          world:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
         Loop Animation: true
         Robot Alpha: 0.5
         Robot Color: 150; 50; 150
@@ -93,7 +134,7 @@ Visualization Manager:
         Goal State Color: 250; 128; 0
         Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255
-        Planning Group: ""
+        Planning Group: so
         Query Goal State: true
         Query Start State: false
         Show Workspace: false
@@ -112,10 +153,53 @@ Visualization Manager:
         Attached Body Color: 150; 50; 150
         Links:
           All Links Enabled: true
+          Base:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           Expand Joint Details: false
           Expand Link Details: false
           Expand Tree: false
-          Link Tree Style: ""
+          Fixed_Gripper:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Link Tree Style: Links in Alphabetic Order
+          Lower_Arm:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Moving_Jaw:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Shoulder_Rotation_Pitch:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Upper_Arm:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Wrist_Pitch_Roll:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          world:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
         Robot Alpha: 0.5
         Show Robot Collision: false
         Show Robot Visual: true
@@ -208,25 +292,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.6376525163650513
+      Distance: 0.9577091932296753
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.10000000149011612
-        Y: 0.25
-        Z: 0.30000001192092896
+        X: 0.005712796002626419
+        Y: 0.03652983903884888
+        Z: -0.004462184384465218
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.34500011801719666
+      Pitch: 0.3149992823600769
       Target Frame: world
       Value: Orbit (rviz_default_plugins)
-      Yaw: 5.3551859855651855
+      Yaw: 4.765182018280029
     Saved: ~
 Window Geometry:
   Displays:
