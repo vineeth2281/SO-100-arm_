@@ -8,7 +8,9 @@ Panels:
         - /Status1
         - /RobotModel1
         - /RobotModel1/Description Topic1
-      Splitter Ratio: 0.5
+        - /TF1
+        - /TF1/Frames1
+      Splitter Ratio: 0.6705882549285889
     Tree Height: 719
   - Class: rviz_common/Selection
     Name: Selection
@@ -63,10 +65,53 @@ Visualization Manager:
       Enabled: true
       Links:
         All Links Enabled: true
+        Base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
+        Fixed_Gripper:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         Link Tree Style: Links in Alphabetic Order
+        Lower_Arm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        Moving_Jaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        Shoulder_Rotation_Pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        Upper_Arm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        Wrist_Pitch_Roll:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Mass Properties:
         Inertia: false
         Mass: false
@@ -75,6 +120,47 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        Base:
+          Value: true
+        Fixed_Gripper:
+          Value: true
+        Lower_Arm:
+          Value: true
+        Moving_Jaw:
+          Value: true
+        Shoulder_Rotation_Pitch:
+          Value: true
+        Upper_Arm:
+          Value: true
+        Wrist_Pitch_Roll:
+          Value: true
+        base_link:
+          Value: true
+        world:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        world:
+          base_link:
+            Base:
+              Shoulder_Rotation_Pitch:
+                Upper_Arm:
+                  Lower_Arm:
+                    Wrist_Pitch_Roll:
+                      Fixed_Gripper:
+                        Moving_Jaw:
+                          {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -121,25 +207,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 11.735523223876953
+      Distance: 0.9051235914230347
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.3756282329559326
-        Y: -0.1275985836982727
-        Z: 0.7263932228088379
+        X: 0.011183726601302624
+        Y: -0.09587858617305756
+        Z: 0.08320586383342743
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8953991532325745
+      Pitch: 0.3653993308544159
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.6635847091674805
+      Yaw: 0.40858855843544006
     Saved: ~
 Window Geometry:
   Displays:

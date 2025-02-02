@@ -162,7 +162,7 @@
     <child
       link="Shoulder_Rotation_Pitch" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 -1 0" />
   </joint>
   <link
     name="Upper_Arm">
@@ -209,13 +209,14 @@
     type="continuous">
     <origin
       xyz="0.000125 0.1086 0"
-      rpy="3.1416 0 -1.5708" />
+      rpy="3.1416 0 0" />
+      <!-- rpy="3.1416 0 -1.5708" /> -->
     <parent
       link="Shoulder_Rotation_Pitch" />
     <child
       link="Upper_Arm" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
   </joint>
   <link
     name="Lower_Arm">
@@ -262,13 +263,14 @@
     type="continuous">
     <origin
       xyz="-0.11238 0.0282 0"
-      rpy="0 0 -2.2391" />
+      rpy="0 0 -0.0" />
+      <!-- rpy="0 0 -2.2391" /> -->
     <parent
       link="Upper_Arm" />
     <child
       link="Lower_Arm" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
   </joint>
   <link
     name="Wrist_Pitch_Roll">
@@ -374,7 +376,7 @@
     <child
       link="Fixed_Gripper" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
   </joint>
   <link
     name="Moving_Jaw">
