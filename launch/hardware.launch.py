@@ -9,10 +9,16 @@ from launch.conditions import IfCondition
 
 def generate_launch_description():
     # Add launch argument
-    test_zero_pose_arg = DeclareLaunchArgument(
-        'test_zero_pose',
+    zero_pose_arg = DeclareLaunchArgument(
+        'zero_pose',
         default_value='false',
         description='Test zero pose after startup'
+    )
+
+    rviz_arg = DeclareLaunchArgument(
+        'rviz',
+        default_value='false',
+        description='Visualize the robot in RViz'
     )
 
     # Get URDF via xacro
@@ -80,6 +86,7 @@ def generate_launch_description():
 
 
     rviz_node = Node(
+        condition=IfCondition(LaunchConfiguration('rviz')),
         package='rviz2',
         executable='rviz2',
         name='rviz2',
@@ -88,10 +95,10 @@ def generate_launch_description():
 
     # Add zero pose test node
     zero_pose_node = Node(
+        condition=IfCondition(LaunchConfiguration('zero_pose')),
         package='so_arm_100_hardware',
         executable='zero_pose.py',
         name='zero_pose_test',
-        condition=IfCondition(LaunchConfiguration('test_zero_pose'))
     )
 
     nodes = [
@@ -104,4 +111,4 @@ def generate_launch_description():
         zero_pose_node
     ]
 
-    return LaunchDescription([test_zero_pose_arg] + nodes) 
+    return LaunchDescription([zero_pose_arg, rviz_arg] + nodes) 
