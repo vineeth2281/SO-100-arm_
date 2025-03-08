@@ -7,7 +7,7 @@ moveit_setup_assistant_config:
   package_settings:
     author_name: Bruk
     author_email: bruk@signalbotics.com
-    generated_timestamp: 1732262392
+    generated_timestamp: 1739481965
   control_xacro:
     command:
       - position

@@ -4,7 +4,7 @@ project(so_100_arm)
 find_package(ament_cmake REQUIRED)
 
 install(DIRECTORY 
-  urdf
+  models
   launch
   config
   DESTINATION share/${PROJECT_NAME}
