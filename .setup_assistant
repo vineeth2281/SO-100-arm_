@@ -5,9 +5,9 @@ moveit_setup_assistant_config:
   srdf:
     relative_path: config/so_100_arm.srdf
   package_settings:
-    author_name: Bruk
+    author_name: Bruk Gebregziabher
     author_email: bruk@signalbotics.com
-    generated_timestamp: 1739481965
+    generated_timestamp: 1741639853
   control_xacro:
     command:
       - position

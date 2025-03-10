@@ -3,8 +3,7 @@ controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
 
-
-    so_controller:
+    arm_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
 
@@ -15,7 +14,7 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-so_controller:
+arm_controller:
   ros__parameters:
     joints:
       - Shoulder_Rotation
@@ -29,7 +28,6 @@ so_controller:
       - position
       - velocity
     allow_nonzero_velocity_at_trajectory_end: true
-    
 gripper_controller:
   ros__parameters:
     joints:
