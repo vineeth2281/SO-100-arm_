@@ -20,11 +20,30 @@ The original ROS1 implementation can be found at: https://github.com/TheRobotStu
 
 ## Prerequisites
 
+### ROS2 and Dependencies
+
 - ROS2 Humble
 - Gazebo Garden
 - MoveIt2
 - ros2_control
 - gz_ros2_control
+
+### Hardware Requirements
+
+For using the physical robot:
+
+- SO-ARM-100 robot arm (5-DOF or 7-DOF version)
+- Feetech SMS/STS series servos
+- USB-to-Serial converter (CH340 chip)
+- so_arm_100_hardware package installed:
+
+  ```bash
+  cd ~/ros2_ws/src
+  git clone git@github.com:signalbotics/so_arm_100_hardware.git
+  cd ~/ros2_ws
+  colcon build --packages-select so_arm_100_hardware
+  source install/setup.bash
+  ```
 
 ## Installation
 
@@ -38,7 +57,7 @@ cd ~/ros2_ws/src
 ### Clone the repository
 
 ```bash
-git clone git@github.com:brukg/SO-100-arm.git
+git clone git@github.com:signalbotics/SO-100-arm.git
 ```
 
 ### Install dependencies
@@ -56,6 +75,81 @@ source install/setup.bash
 ```
 
 ## Usage
+
+### Launch the Hardware Interface
+
+```bash
+## Launch the hardware interface
+ros2 launch so_100_arm hardware.launch.py
+```
+
+### Test Servo Communication
+
+To verify servo connections and read their status:
+
+```bash
+# Build the test program
+cd ~/ros2_ws
+colcon build --packages-select so_arm_100_hardware
+source install/setup.bash
+
+# Set USB permissions
+sudo chmod 666 /dev/ttyUSB0
+
+# Run the servo test
+ros2 run so_arm_100_hardware test_servo
+```
+
+This will:
+
+- Test communication with each servo (ID 1-6)
+- Read current position, voltage, temperature
+- Verify position control mode
+- Show any communication errors
+
+Example output for working servos:
+
+```
+
+Testing servo 1...
+  Servo 1 responded to ping
+  Set to position control mode
+  Position: 1963
+  Voltage: 7.4V
+  Temperature: 29°C
+  Load: -24
+```
+
+### Test Hardware Interface
+
+Send a test trajectory to move the physical arm:
+
+```bash
+ros2 action send_goal /so_100_arm_controller/follow_joint_trajectory control_msgs/action/FollowJointTrajectory "{
+  trajectory: {
+    joint_names: [Shoulder_Rotation, Shoulder_Pitch, Elbow, Wrist_Pitch, Wrist_Roll],
+    points: [
+      {
+        positions: [-0.5, -1.0, 0.5, 0.0, 0.0],
+        velocities: [0.0, 0.0, 0.0, 0.0, 0.0],
+        time_from_start: {sec: 2, nanosec: 0}
+      },
+      {
+        positions: [-0.5, 0.50, 0.0, 0.0, 0.0],
+        velocities: [0.0, 0.0, 0.0, 0.0, 0.0],
+        time_from_start: {sec: 4, nanosec: 0}
+      }
+    ]
+  }
+}"
+```
+
+This will move the arm through two positions:
+
+- First point (2 sec): Shoulder down with elbow bent
+- Second point (4 sec): Shoulder up with arm extended
+
+Note: Ensure the arm has clear space to move before sending commands.
 
 ### Launch the robot in Gazebo
 
@@ -105,6 +199,7 @@ ros2 action send_goal /gripper_controller/gripper_cmd control_msgs/action/Grippe
 ```
 
 Monitor gripper state:
+
 ```bash
 ros2 topic echo /gripper_controller/state
 ```
@@ -118,6 +213,7 @@ Note: The gripper position ranges from 0.0 (closed) to 0.085 (fully open). The m
 [![SO-100 Robot Arm Simulation](https://img.youtube.com/vi/ATuS6rOhYvI/0.jpg)](https://youtu.be/ATuS6rOhYvI?si=T6bOiCdqgBmSoSCu)
 
 The video above shows the SO-100 robot arm in Gazebo Harmonic simulation:
+
 - Joint trajectory execution
 - Position control
 - Dynamic simulation with gravity
@@ -174,6 +270,7 @@ so_100_arm/
 ## Joint Configuration
 
 ### 7-DOF Configuration
+
 1. Shoulder Pitch     (-3.14 to 3.14 rad)
 2. Shoulder Yaw      (-1.0 to 0.0 rad)
 3. Humeral Rotation  (-1.8 to 1.8 rad)
@@ -183,6 +280,7 @@ so_100_arm/
 7. Wrist Pitch      (-1.8 to 1.8 rad)
 
 ### 5-DOF Configuration
+
 1. Shoulder Rotation (-3.14 to 3.14 rad)
 2. Shoulder Pitch    (-3.14 to 3.14 rad)
 3. Elbow            (-3.14 to 3.14 rad)
@@ -216,4 +314,3 @@ Bruk G.
 ## Acknowledgments
 
 - Based on the SO-ARM100 project by The Robot Studio
-
