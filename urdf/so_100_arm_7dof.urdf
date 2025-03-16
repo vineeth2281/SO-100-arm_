@@ -33,7 +33,7 @@
     </plugin>
     
     <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-        <parameters>/home/phoenix/ros2_ws/install/so_100_arm/share/so_100_arm/config/controllers_7dof.yaml</parameters>
+        <parameters>$(find so_100_arm)/config/controllers_7dof.yaml</parameters>
         <robot_param>robot_description</robot_param>
         <robot_param_node>robot_state_publisher</robot_param_node>
     </plugin>

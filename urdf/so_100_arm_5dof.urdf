@@ -31,7 +31,7 @@
     </plugin>
     
     <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-        <parameters>/home/phoenix/ros2_ws/install/so_100_arm/share/so_100_arm/config/controllers_5dof.yaml</parameters>
+        <parameters>$(find so_100_arm)/config/controllers_5dof.yaml</parameters>
         <robot_param>robot_description</robot_param>
         <robot_param_node>robot_state_publisher</robot_param_node>
     </plugin>
@@ -97,14 +97,14 @@
       </joint>
   </ros2_control>
 
-  
+<!--   
   <link name="world"/>
 
   <joint name="world_to_base" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
+  </joint> -->
 
   <link 
     name="base_link">

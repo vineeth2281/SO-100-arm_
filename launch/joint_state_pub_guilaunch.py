@@ -32,6 +32,17 @@ def generate_launch_description():
         
         nodes = [
             Node(
+                package='joint_state_publisher_gui',
+                executable='joint_state_publisher_gui',
+                name='joint_state_publisher_gui'
+            ),
+            Node(
+                package='robot_state_publisher',
+                executable='robot_state_publisher',
+                parameters=[{'robot_description': params['robot_description']}],
+                name='robot_state_publisher'
+            ),
+            Node(
                 package='rviz2',
                 executable='rviz2',
                 name='rviz2',

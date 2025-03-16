@@ -67,13 +67,13 @@
   </ros2_control>
 
   
-  <link name="world"/>
+  <!-- <link name="world"/>
 
   <joint name="world_to_base" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
+  </joint> -->
 
   <link 
     name="base_link">
@@ -170,13 +170,13 @@
     type="continuous">
     <origin
       xyz="0 -0.0452 0.0165"
-      rpy="1.5708 0 0" />
+      rpy="1.5708 0 -0.6" />
     <parent
       link="Base" />
     <child
       link="Shoulder_Rotation_Pitch" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 -1 0" />
   </joint>
   <link
     name="Upper_Arm">
@@ -223,7 +223,7 @@
     type="continuous">
     <origin
       xyz="0 0.1025 0.0306"
-      rpy="0 0 0" />
+      rpy="0.155 0 0" />
     <parent
       link="Shoulder_Rotation_Pitch" />
     <child
@@ -276,7 +276,7 @@
     type="continuous">
     <origin
       xyz="0 0.11257 0.028"
-      rpy="0 0 0" />
+      rpy="-0.301 0 0" />
     <parent
       link="Upper_Arm" />
     <child
@@ -329,7 +329,7 @@
     type="continuous">
     <origin
       xyz="0 0.0052 0.1349"
-      rpy="0.707 0 0" />
+      rpy="-1.802 0 0" />
     <parent
       link="Lower_Arm" />
     <child
@@ -382,7 +382,7 @@
     type="continuous">
     <origin
       xyz="0 -0.0601 0"
-      rpy="0 0 0" />
+      rpy="0 1.05708 0" />
     <parent
       link="Wrist_Pitch_Roll" />
     <child
@@ -435,7 +435,7 @@
     type="continuous">
     <origin
       xyz="-0.0202 -0.0244 0"
-      rpy="3.1416 0 3.1416" />
+      rpy="3.1416 0 2.8416" />
     <parent
       link="Fixed_Gripper" />
     <child
