@@ -32,7 +32,7 @@ The original ROS1 implementation can be found at: https://github.com/TheRobotStu
 
 For using the physical robot:
 
-- SO-ARM-100 robot arm (5-DOF or 7-DOF version)
+- SO-ARM-100 robot arm (5-DOF)
 - Feetech SMS/STS series servos
 - USB-to-Serial converter (CH340 chip)
 - so_arm_100_hardware package installed:
