@@ -3,10 +3,9 @@ Panels:
     Help Height: 70
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /PlanningScene1
+      Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 156
+    Tree Height: 185
   - Class: rviz_common/Help
     Name: Help
   - Class: rviz_common/Views
@@ -321,6 +320,34 @@ Visualization Manager:
         Show Robot Collision: false
         Show Robot Visual: true
       Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /camera1/image_raw
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /camera2/image_raw
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -339,29 +366,27 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 0.7192690968513489
+      Distance: 1.1492207050323486
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.24871143698692322
-        Y: 0.013442783616483212
-        Z: 0.17655298113822937
+        X: -0.06238885223865509
+        Y: -0.28566887974739075
+        Z: 0.2392931580543518
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.24500034749507904
+      Pitch: -0.06999821215867996
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: 2.9670028686523438
+      Yaw: 1.0337908267974854
     Saved: ~
 Window Geometry:
-  " - Trajectory Slider":
-    collapsed: false
   Displays:
     collapsed: false
   Height: 1011
@@ -369,11 +394,15 @@ Window Geometry:
     collapsed: false
   Hide Left Dock: false
   Hide Right Dock: true
+  Image:
+    collapsed: false
   MotionPlanning:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002b400000395fc0200000006fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004400fffffffb000000100044006900730070006c006100790073010000003f00000122000000cc00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000167000001b20000019600fffffffb0000000800480065006c0070000000029a0000006e0000006f00fffffffb0000000a00560069006500770073010000031f000000b5000000a900fffffffb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004400ffffff000004c60000039500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002b400000395fc0200000009fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004400fffffffb000000100044006900730070006c006100790073010000003f0000013f000000cc00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000184000001a10000019600fffffffb0000000800480065006c0070000000029a0000006e0000006f00fffffffb0000000a00560069006500770073010000032b000000a9000000a900fffffffb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000000000000000fb0000003c005400720061006a006500630074006f007200790020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004400fffffffb0000000a0049006d006100670065030000067f00000344000000f3000000d4fb0000000a0049006d00610067006503000002cb0000035c000000f7000000be000004c60000039500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Trajectory - Trajectory Slider:
+    collapsed: false
   Views:
     collapsed: false
   Width: 1920

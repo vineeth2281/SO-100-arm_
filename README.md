@@ -39,7 +39,7 @@ For using the physical robot:
 
   ```bash
   cd ~/ros2_ws/src
-  git clone git@github.com:signalbotics/so_arm_100_hardware.git
+  git clone git@github.com:brukg/so_arm_100_hardware.git
   cd ~/ros2_ws
   colcon build --packages-select so_arm_100_hardware
   source install/setup.bash
@@ -57,7 +57,7 @@ cd ~/ros2_ws/src
 ### Clone the repository
 
 ```bash
-git clone git@github.com:signalbotics/SO-100-arm.git
+git clone git@github.com:brukg/SO-100-arm.git
 ```
 
 ### Install dependencies
