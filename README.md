@@ -1,6 +1,6 @@
 # SO-100 Robot Arm ROS2 Package
 
-This package provides ROS2 support for the SO-100 robot arm, available in both 5-DOF and 7-DOF configurations. It is based on the open-source 3D printable [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100) project by The Robot Studio. This implementation includes URDF models, Gazebo simulation support, and MoveIt2 integration.
+This package provides ROS2 support for the SO-100 robot arm, available in 5-DOF configuration. It is based on the open-source 3D printable [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100) project by The Robot Studio. This implementation includes URDF models, Gazebo simulation support, and MoveIt2 integration.
 
 The original ROS1 implementation can be found at: https://github.com/TheRobotStudio/SO-ARM100
 
@@ -8,7 +8,6 @@ The original ROS1 implementation can be found at: https://github.com/TheRobotStu
 
 - Robot arm URDF models
   - 5-DOF configuration with gripper
-  - 7-DOF configuration
 - Gazebo Harmonic simulation support
 - ROS2 Control integration
   - Joint trajectory controller
@@ -171,11 +170,6 @@ ros2 launch so_100_arm demo.launch.py
 
 ### Test Joint Movement
 
-#### Send a test position command for 7dof arm
-
-```bash
-ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory '{joint_names: ["Shoulder_Pitch", "Shoulder_Yaw", "Humeral_Rotation", "Elbow", "Wrist_Roll", "Wrist_Yaw", "Wrist_Pitch"], points: [{positions: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], velocities: [], accelerations: [], effort: [], time_from_start: {sec: 1, nanosec: 0}}]}'
-```
 
 #### Send a test position command for 5dof arm
 
@@ -225,7 +219,6 @@ so_100_arm/
 ├── CMakeLists.txt                      # Build system configuration
 ├── config/  
 │   ├── controllers_5dof.yaml           # 5DOF joint controller configuration
-│   ├── controllers_7dof.yaml           # 7DOF joint controller configuration
 │   ├── initial_positions.yaml          # Default joint positions
 │   ├── joint_limits.yaml               # Joint velocity and position limits
 │   ├── kinematics.yaml                 # MoveIt kinematics configuration
@@ -254,30 +247,15 @@ so_100_arm/
 │   ├── so_100_arm_5dof/               # 5DOF robot assets
 │   │   ├── meshes/                    # STL files for visualization
 │   │   └── model.config               # Model metadata
-│   └── so_100_arm_7dof/               # 7DOF robot assets
-│       ├── meshes/                    # STL files for visualization
-│       └── model.config               # Model metadata
 ├── package.xml                         # Package metadata and dependencies
 ├── README.md                           # This documentation
 └── urdf/
     ├── so_100_arm_5dof.csv            # Joint configuration data
     ├── so_100_arm_5dof.urdf           # 5DOF robot description
-    ├── so_100_arm_7dof.csv            # Joint configuration data
-    └── so_100_arm_7dof.urdf           # 7DOF robot description
 
 ```
 
 ## Joint Configuration
-
-### 7-DOF Configuration
-
-1. Shoulder Pitch     (-3.14 to 3.14 rad)
-2. Shoulder Yaw      (-1.0 to 0.0 rad)
-3. Humeral Rotation  (-1.8 to 1.8 rad)
-4. Elbow            (-3.0 to 0.0 rad)
-5. Wrist Roll       (-1.8 to 1.8 rad)
-6. Wrist Yaw        (-0.9 to 0.5 rad)
-7. Wrist Pitch      (-1.8 to 1.8 rad)
 
 ### 5-DOF Configuration
 
